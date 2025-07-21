@@ -1,0 +1,290 @@
+main {
+    width: 100%;
+    max-width: 1440px; 
+    background-color: white; 
+    padding: 20px; 
+    margin: auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+}
+
+
+
+.titulo {
+    text-align: center; 
+}
+
+h1 {
+    font-size: 64px;
+    color: black;
+    text-align: left;
+}
+
+h2 {
+    font-size: 18px;
+    color: grey;
+    text-align: left;
+}
+
+.boxservicio > img {
+    height: 350px;
+    width: 484px;
+    border-radius: 10px;
+    display: block; 
+    margin: 0 auto; 
+}
+
+.boxservicio {
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: 30px;
+    margin: 20px; 
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    width: 100%; 
+    max-width: 1000px; 
+    border-radius: 10px;
+    height: 374px;
+    align-items: flex-start; 
+    align-items: flex-end;
+}
+
+.contenedorprincipal {
+    width: 100%;
+    max-width: 1080px;
+    margin: auto;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.informacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%;
+}
+
+.precio {
+    text-align: left;
+    margin-top: auto; 
+    margin-bottom: 10px;
+}
+
+
+h5 {
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+h6 {
+    padding-top: 10px;
+    font-size: 16px;
+    color: #5d6678;
+    text-align: justify;
+    padding-right: 20px;
+}
+
+h7 {
+    font-size: 20px;
+    color: #ff7514;
+    font-weight: bold; 
+}
+
+h8 {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold; 
+}
+
+/*Reservacion*/
+
+/* Sección de "Sobre Nosotros" en la parte superior */
+.section-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h1 {
+    font-size: 48px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 45px;
+}
+
+/* Estilos para la sección "Conócenos" y "Nuestros Valores" */
+.informacion {
+    padding: 20px 20px;
+}
+
+.informacion .container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Mantiene alineados los textos y la imagen */
+}
+
+.informacion .content {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    /* Limita el ancho del bloque de texto */
+}
+
+.informacion .text-block {
+    margin-bottom: 33px;
+}
+
+/* Justificación del texto */
+.informacion .text-block p {
+    font-size: 21px;
+    color: #333;
+    text-align: justify;
+}
+
+
+.informacion .text-block h2 {
+    font-size: 36px;
+    color: #007BFF;
+    margin-bottom: 6px;
+}
+
+.informacion .image {
+    align-content: center;
+    max-width: 500px;
+    margin-left: 50px;
+}
+
+.informacion .image img {
+    max-width: 100%;
+    max-height: 50%;
+    border-radius: 10px;
+    /* Bordes redondeados para la imagen */
+}
+
+@media (max-width: 768px) {
+    .informacion .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .informacion .image {
+        margin-left: 0;
+        margin-top: 20px;
+        /* Añade espacio superior en pantallas pequeñas */
+        max-width: 100%;
+        /* Permite que la imagen ocupe todo el ancho disponible */
+    }
+
+    .informacion .text-block h2 {
+        font-size: 28px;
+    }
+
+    .informacion .text-block p {
+        font-size: 20px;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+h3 {
+    font-size: 36px;
+    color: black;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.container {
+    height: auto;
+    width: auto;
+}
+
+form {
+    width: auto;
+    height: auto;
+    background: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.5em;
+    margin-bottom: 20px ;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.1em;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+}
+
+form input {
+    width: 25.75em;
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+    padding: 0.1em;
+    border: none;
+    border-bottom: 0.12em solid black;
+    outline: none;
+}
+
+form input:focus {
+    border-color: orange;
+}
+
+form input:not(:last-child) {
+    margin-bottom: 0.9em;
+}
+
+.seleccion{
+    width: 25.75em;
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+    padding: 0.3em;
+    border: none;
+    border-bottom: 0.12em solid black;
+    outline: none;
+}
+
+form .seleccion:focus {
+    border-color: orange;
+}
+
+form .seleccion:not(:last-child) {
+    margin-bottom: 0.9em;
+}
+
+form button {
+    font-size: 0.95em;
+    padding: 0.8em 0;
+    border-radius: 2em;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: orange;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    margin-top: 0.2em;
+    transition: 0.5s;
+}
+

@@ -1,0 +1,161 @@
+/* carrito.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main.contenido {
+    padding: 20px;
+    background-color: #fff;
+    max-width: 1200px;
+    width: 1200px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contenido-principal {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.tabla-carrito {
+    flex: 0 0 70%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #747474;
+}
+
+th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+form {
+    display: inline-block;
+}
+
+h2 {
+    font-size: 1.6em;
+    color: #333;
+    margin-top: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1em;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input[type="number"] {
+    padding: 5px;
+    width: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Estilos para el método de pago */
+.metodo-pago {
+    flex: 0 0 25%;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+}
+
+.metodo-pago h2 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#paypal-button-container {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .contenido-principal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tabla-carrito,
+    .metodo-pago {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    a {
+        font-size: 0.9em;
+    }
+}

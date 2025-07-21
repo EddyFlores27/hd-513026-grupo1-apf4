@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/boton.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+    <title>Carrito</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal form input {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal form button {
+            padding: 10px;
+            font-size: 1em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal form button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <section class="contenedor nav">
+            <div class="logo">
+                <img src="../img/PetCare.png" alt="">
+            </div>
+            <div class="enlaces-header">
+                <a href="inicio">Inicio</a>
+                <a href="blog">Blog</a>
+                <a href="servicio">Citas</a>
+                <a href="tienda">Tienda</a>
+                <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+            </div>
+            <div class="botnesnav">
+                <div class="carrito-container">
+                    <a href="/carrito" class="carrito-link">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+                </div>
+                <span th:if="${usuario != null}">
+                    <span th:text="${usuario.nombre}"></span>
+                    <a href="/logout">Cerrar Sesión</a>
+                </span>
+                <span th:if="${usuario == null}">
+                    <a href="login">Iniciar Sesión</a>
+                </span>
+            </div>         
+        </section>
+    </nav>
+</header>
+<body>
+    <main class="contenido">
+        <h1>Datos de Usuario</h1>
+        <div th:if="${usuario != null}">
+            <!-- Mostrar mensaje de error si existe -->
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red;"></p>
+            </div>
+            
+            <p><strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span></p>
+            <p><strong>Apellido:</strong> <span th:text="${usuario.apellido}"></span></p>
+            <p><strong>Correo Electrónico:</strong> <span th:text="${usuario.correo}"></span></p>
+            <p><strong>Teléfono:</strong> <span th:text="${usuario.telefono}"></span></p>
+            <p><strong>DNI:</strong> <span th:text="${usuario.dni}"></span></p>
+            
+            <div class="button-container">
+                <form th:action="@{/perfil/eliminar}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');">
+                    <button type="submit" class="boton" style="background-color: rgb(173, 25, 25); color: white;">
+                        Eliminar Perfil
+                    </button>
+                </form>
+    
+             <!-- Botón para abrir el modal -->
+                <button id="editarPerfilBtn" class="boton" style="background-color: rgb(19, 94, 19); color: white;">
+                    Editar Perfil
+                </button>
+            </div>
+    
+            <!-- Modal -->
+            <div id="editarModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Editar Perfil</h2>
+                    <form th:action="@{/perfil/actualizar}" method="post">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" th:value="${usuario.nombre}" required>
+                        
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" th:value="${usuario.apellido}" required>
+                        
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" th:value="${usuario.correo}" required>
+                        
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" th:value="${usuario.telefono}" required>
+    
+                        <label for="dni">DNI:</label>
+                        <input type="text" id="dni" name="dni" th:value="${usuario.dni}" required>
+                        
+                        <button type="submit">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>                
+        </div>
+    
+        <div th:if="${usuario == null}">
+            <p>No has iniciado sesión. Por favor, <a href="/login">inicia sesión</a>.</p>
+        </div>
+    </main>
+    
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="../img/PetCare.png" alt="PetCare Logo">
+        </div>
+        <div class="footer-info">
+            <h4>Contáctanos</h4>
+            <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+        </div>
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="footer-nav">
+            <h4>Navegación</h4>
+            <div class="nav-columns">
+                <div class="nav-columnss">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="tienda">Carrito</a>
+                </div>
+                <div class="nav-column">
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2024 PetCare. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+<script>
+    const modal = document.getElementById("editarModal");
+    const btn = document.getElementById("editarPerfilBtn");
+    const span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+</script>
+<script>
+    function mostrarAlerta() {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Atención',
+        text: 'Debes iniciar sesión para ver el perfil.',
+        confirmButtonText: 'OK'
+      });
+    }
+  </script>
+</html>

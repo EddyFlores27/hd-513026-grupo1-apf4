@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/blogs.css">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <title>Pet Care - Blog</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <section class="contenedor nav">
+                <div class="logo">
+                    <img src="../img/PetCare.png" alt="">
+                </div>
+                <div class="enlaces-header">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                    <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                    <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+                </div>
+                <div class="botnesnav">
+                    <div class="carrito-container">
+                        <a href="/carrito" class="carrito-link">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                    </div>
+                    <span th:if="${usuario != null}">
+                        <span th:text="${usuario.nombre}"></span>
+                        <a href="/logout">Cerrar Sesión</a>
+                    </span>
+                    <span th:if="${usuario == null}">
+                        <a href="login">Iniciar Sesión</a>
+                    </span>
+                </div>      
+            </section>
+        </nav>
+    </header>
+    <main>
+        <section class="informacion">
+            <div class="section-title">
+                <h1>Guía de Alimentación Saludable para tu Mascota</h1>
+                <p>Cuidar la alimentación de tu mascota es esencial para su salud y bienestar. Una dieta equilibrada no solo contribuye a mantener un peso adecuado, sino que también ayuda a prevenir enfermedades y mejorar la calidad de vida de tu compañero peludo. A continuación, te ofrecemos una guía práctica para garantizar que tu mascota reciba la nutrición que necesita.</p>
+            </div>
+            <div class="container">
+                <div class="content">
+                    <div class="text-block">
+                        <h2>Conoce las Necesidades Nutricionales</h2>
+                        <p>Cada especie y raza tiene diferentes necesidades nutricionales. Consulta con tu veterinario para determinar la dieta adecuada para tu mascota, considerando su edad, tamaño, nivel de actividad y cualquier condición de salud específica.</p>
+                    </div>
+                    <div class="text-block">
+                        <h2>Elige Alimentos de Calidad</h2>
+                        <p>Opta por alimentos de alta calidad que contengan ingredientes naturales. Busca marcas que utilicen proteínas de origen animal como primer ingrediente y que eviten aditivos artificiales, colorantes y conservantes. Leer las etiquetas te ayudará a hacer una elección informada.
+                        </p>
+                    </div>
+                </div>
+                <div class="image">
+                    <img src="../img/referencia.jpg" alt="Imagen representando valores y conócenos">
+                </div>
+            </div>
+            <div class="section-title">
+                <p>Una alimentación adecuada es clave para la salud y felicidad de tu mascota. Siguiendo esta guía y consultando a tu veterinario, podrás asegurarte de que tu compañero reciba la nutrición necesaria para llevar una vida larga y saludable. Recuerda que cada mascota es única, así que lo que funciona para una puede no ser lo mejor para otra. ¡Cuida de tu amigo peludo como se merece.</p>
+            </div>
+        </section>
+    </main>
+
+    <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '6744ac7939e838d569b398cf' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+      </script>
+
+    <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="../img/PetCare.png" alt="PetCare Logo">
+                </div>
+                <div class="footer-info">
+                    <h4>Contáctanos</h4>
+                    <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navegación</h4>
+                    <div class="nav-columns">
+                        <div class="nav-columnss">
+                            <a href="inicio">Inicio</a>
+                            <a href="blog">Blog</a>
+                            <a href="tienda">Carrito</a>
+                        </div>
+                        <div class="nav-column">
+                            <a href="servicio">Citas</a>
+                            <a href="tienda">Tienda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 PetCare. All rights reserved.</p>
+            </div>
+        </footer>
+    <script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+    <script>
+        function mostrarAlerta() {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text: 'Debes iniciar sesión para ver el perfil.',
+            confirmButtonText: 'OK'
+          });
+        }
+      </script>
+</body>
+
+</html>

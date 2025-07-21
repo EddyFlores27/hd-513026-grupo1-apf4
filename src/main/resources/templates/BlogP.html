@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <title>Pet Care - Blog</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <section class="contenedor nav">
+                <div class="logo">
+                    <img src="../img/PetCare.png" alt="">
+                </div>
+                <div class="enlaces-header">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                    <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                    <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+                </div>
+                <div class="botnesnav">
+                    <div class="carrito-container">
+                        <a href="/carrito" class="carrito-link">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                    </div>
+                    <span th:if="${usuario != null}">
+                        <span th:text="${usuario.nombre}"></span>
+                        <a href="/logout">Cerrar Sesión</a>
+                    </span>
+                    <span th:if="${usuario == null}">
+                        <a href="login">Iniciar Sesión</a>
+                    </span>
+                </div>       
+            </section>
+        </nav>
+    </header>
+
+    <section class="servicios">
+        <div class="titulo">
+            <h1>Consejos y Cuidados para tu Mascota</h1>
+            <h2>Descubre valiosa información para mantener a tu mascota sana y feliz. Desde guías de nutrición hasta recomendaciones de cuidados especiales, nuestro blog está diseñado para ayudarte a ser el mejor dueño que tu amigo peludo necesita.</h2>
+        </div>
+        <div class="services-cards">
+            <div class="row">
+                <!-- Fila 1: 3 servicios -->
+                <div class="col">
+                    <div class="service-card">
+                        <img src="../img/blog1.jpg" alt="Servicio 1">
+                        <h3>Guía de Alimentación Saludable para tu Mascota</h3>
+                        <p>Aprende a elegir los mejores alimentos según la especie, raza y edad de tu mascota. Una dieta balanceada es clave para su salud y longevidad.</p>
+                        <div class="boton">
+                            <a href="blogs">Saber más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <img src="../img/blog2.webp" alt="Servicio 2">
+                        <h3>Cómo Mantener a tu Mascota Activa y Feliz</h3>
+                        <p>Descubre actividades físicas y juegos que mantendrán a tu perro o gato en forma, además de estimular su mente y reducir el estrés.</p>
+                        <div class="boton">
+                            <a href="#">Saber más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <img src="../img/blog3.jpg" alt="Servicio 3">
+                        <h3>Cuidado Preventivo: La Importancia de las Vacunas</h3>
+                        <p>Asegúrate de que tu mascota esté protegida contra enfermedades comunes. Aquí te contamos sobre los calendarios de vacunación y desparasitación recomendados.</p>
+                        <div class="boton">
+                            <a href="#">Saber más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Fila 2: 3 servicios -->
+                <div class="col">
+                    <div class="service-card">
+                        <img src="../img/blog4.avif" alt="Servicio 4">
+                        <h3>Identificando Señales de Estrés y Ansiedad en tu Mascota</h3>
+                        <p>¿Tu mascota está mostrando cambios de comportamiento? Aprende a reconocer los signos de estrés y cómo puedes ayudar a tu amigo peludo a sentirse más tranquilo.</p>
+                        <div class="boton">
+                            <a href="#">Saber más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <img src="../img/blog5.jpg" alt="Servicio 5">
+                        <h3>Higiene y Cuidado de la Piel y el Pelaje</h3>
+                        <p>Mantén a tu mascota limpia y con un pelaje brillante. Descubre consejos para el cepillado, el baño adecuado y cómo prevenir problemas dermatológicos.</p>
+                        <div class="boton">
+                            <a href="#">Saber más</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="service-card">
+                        <img src="../img/blog6.jpg" alt="Servicio 6">
+                        <h3>Cuidados Especiales para Mascotas Senior</h3>
+                        <p>A medida que tu mascota envejece, sus necesidades cambian. Aprende a brindarle los cuidados específicos que necesita para vivir su etapa senior con bienestar.</p>
+                        <div class="boton">
+                            <a href="#">Saber más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '6744ac7939e838d569b398cf' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+      </script>
+
+    <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="../img/PetCare.png" alt="PetCare Logo">
+                </div>
+                <div class="footer-info">
+                    <h4>Contáctanos</h4>
+                    <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navegación</h4>
+                    <div class="nav-columns">
+                        <div class="nav-columnss">
+                            <a href="inicio">Inicio</a>
+                            <a href="blog">Blog</a>
+                            <a href="tienda">Carrito</a>
+                        </div>
+                        <div class="nav-column">
+                            <a href="servicio">Citas</a>
+                            <a href="tienda">Tienda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 PetCare. All rights reserved.</p>
+            </div>
+        </footer>
+    <script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+    <script>
+        function mostrarAlerta() {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text: 'Debes iniciar sesión para ver el perfil.',
+            confirmButtonText: 'OK'
+          });
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/tienda.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/boton.css">
+    <title>Pet Care - Tienda</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function alertaIniciarSesion() {
+    Swal.fire({
+        title: 'Inicia Sesión',
+        text: 'Debes iniciar sesión para realizar compras.',
+        icon: 'warning',
+        confirmButtonText: 'Ir al Login',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'login';
+        }
+    });
+    }
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <section class="contenedor nav">
+                    <div class="logo">
+                        <img src="../img/PetCare.png" alt="">
+                    </div>
+                    <div class="enlaces-header">
+                        <a href="inicio">Inicio</a>
+                        <a href="blog">Blog</a>
+                        <a href="servicio">Citas</a>
+                        <a href="tienda">Tienda</a>
+                        <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                        <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+                    </div>
+                    <div class="botnesnav">
+                        <div class="carrito-container">
+                            <a href="/carrito" class="carrito-link">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </a>
+                        </div>
+                        <span th:if="${usuario != null}">
+                            <span th:text="${usuario.nombre}"></span>
+                            <a href="/logout">Cerrar Sesión</a>
+                        </span>
+                        <span th:if="${usuario == null}">
+                            <a href="login">Iniciar Sesión</a>
+                        </span>
+                    </div>                    
+                </section>
+            </nav>
+        </header>
+
+        <main class="contenido">
+            <section class="productos">
+                <div class="titulo">
+                    <h1>Alimentos</h1>
+                </div>
+                <div class="producto-seccion">
+                    <div th:each="producto : ${alimentos}" class="producto">
+                        <img th:src="'/Img/' + ${producto.id_producto} + '.jpg'" alt="Imagen de Producto">
+                        <h2 th:text="${producto.nom_prod}"></h2>
+                        <p th:text="'Marca: ' + ${producto.marca}"></p>
+                        <p th:text="'Precio: $' + ${producto.precio}"></p>
+                        <p th:text="'Disponibilidad: ' + ${producto.disponibilidad}"></p>
+                        <span th:if="${usuario != null}">
+                            <button class="btn-agregar" 
+                                    th:onclick="'location.href=\'/detallesprod?id=' + ${producto.id_producto} + '\''">
+                                Agregar al carrito
+                            </button>
+                        </span>                        
+                        <span th:if="${usuario == null}">
+                            <button class="btn-agregar" onclick="alertaIniciarSesion()">Agregar al carrito</button>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="productos">
+                <div class="titulo">
+                    <h1>Accesorios</h1>
+                </div>
+                <div class="producto-seccion">
+                    <div th:each="producto : ${accesorios}" class="producto">
+                        <img th:src="'/Img/' + ${producto.id_producto} + '.jpg'" alt="Imagen de Producto">
+                        <h2 th:text="${producto.nom_prod}"></h2>
+                        <p th:text="'Marca: ' + ${producto.marca}"></p>
+                        <p th:text="'Precio: $' + ${producto.precio}"></p>
+                        <p th:text="'Disponibilidad: ' + ${producto.disponibilidad}"></p>
+                        <span th:if="${usuario != null}">
+                            <button class="btn-agregar" 
+                                    th:onclick="'location.href=\'/detallesprod?id=' + ${producto.id_producto} + '\''">
+                                Agregar al carrito
+                            </button>
+                        </span>                        
+                        <span th:if="${usuario == null}">
+                            <button class="btn-agregar" onclick="alertaIniciarSesion()">Agregar al carrito</button>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        
+            <section class="productos">
+                <div class="titulo">
+                    <h1>Medicinas</h1>
+                </div>
+                <div class="producto-seccion">
+                    <div th:each="producto : ${medicinas}" class="producto">
+                        <img th:src="'/Img/' + ${producto.id_producto} + '.jpg'" alt="Imagen de Producto">
+                        <h2 th:text="${producto.nom_prod}"></h2>
+                        <p th:text="'Marca: ' + ${producto.marca}"></p>
+                        <p th:text="'Precio: $' + ${producto.precio}"></p>
+                        <p th:text="'Disponibilidad: ' + ${producto.disponibilidad}"></p>
+                        <span th:if="${usuario != null}">
+                            <button class="btn-agregar" 
+                                    th:onclick="'location.href=\'/detallesprod?id=' + ${producto.id_producto} + '\''">
+                                Agregar al carrito
+                            </button>
+                        </span>                        
+                        <span th:if="${usuario == null}">
+                            <button class="btn-agregar" onclick="alertaIniciarSesion()">Agregar al carrito</button>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </main>        
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="../img/PetCare.png" alt="PetCare Logo">
+                </div>
+                <div class="footer-info">
+                    <h4>Contáctanos</h4>
+                    <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navegación</h4>
+                    <div class="nav-columns">
+                        <div class="nav-columnss">
+                            <a href="inicio">Inicio</a>
+                            <a href="blog">Blog</a>
+                            <a href="tienda">Carrito</a>
+                        </div>
+                        <div class="nav-column">
+                            <a href="servicio">Citas</a>
+                            <a href="tienda">Tienda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 PetCare. All rights reserved.</p>
+            </div>
+        </footer>
+        <script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+        <script>
+            function mostrarAlerta() {
+              Swal.fire({
+                icon: 'warning',
+                title: 'Atención',
+                text: 'Debes iniciar sesión para ver el perfil.',
+                confirmButtonText: 'OK'
+              });
+            }
+          </script>
+    </div>
+</body>
+</html>

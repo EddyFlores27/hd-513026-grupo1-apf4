@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 80px;
+}
+
+.contenedor {
+    width: auto;
+    max-width: auto;
+    margin: auto;
+    padding: 0px 0px 0px;
+    overflow: hidden;
+}
+
+/*Barra de navegacion*/
+nav {
+    width: 100%;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid transparent;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, .2);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+
+.nav .logo {
+    height: 70px;
+}
+
+.nav .logo img {
+    margin-top: 8px;
+    margin-left: 10px;
+    height: 80%;
+    vertical-align: top;
+}
+
+.enlaces-header {
+    font-weight: 300;
+}
+
+.nav .enlaces-header a {
+    color: black;
+    text-decoration: none;
+    margin-left: 50px;
+    font-size: 18px;
+}
+
+.botnesnav {
+    align-items: center;
+    text-align: center;
+}
+
+.nav .botnesnav a {
+    width: 130px;
+    display: inline-block;
+    background: #ff7514;
+    text-align: center;
+    color: black;
+    padding: 8px 0;
+    text-decoration: none;
+    font-weight: 400px;
+    text-transform: uppercase;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 0 8px 32px rgba(85, 83, 75, 0.46);
+    margin-right: 30px;
+}
+
+.nav .botnesnav .carrito-link {
+    background: none; /* Elimina el fondo naranja */
+    box-shadow: none;
+    color: inherit;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    text-transform: none;
+    font-size: inherit;
+}
+
+.nav .botnesnav i {
+    width: 30px;
+    height: 30px;
+    margin: 0 30px 0 0;
+    font-size: 25px;
+}
+
+.carrito-container {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.carrito-link {
+    text-decoration: none;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.carrito-link i {
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.carrito-link i:hover {
+    transform: scale(1.2);
+}

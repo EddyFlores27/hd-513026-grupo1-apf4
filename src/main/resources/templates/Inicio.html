@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <title>Pet Care - Inicio</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <section class="contenedor nav">
+                <div class="logo">
+                    <img src="../img/PetCare.png" alt="">
+                </div>
+                <div class="enlaces-header">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                    <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                    <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+                </div>
+                <div class="botnesnav">
+                    <div class="carrito-container">
+                        <a href="/carrito" class="carrito-link">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                    </div>
+                    <span th:if="${usuario != null}">
+                        <span th:text="${usuario.nombre}"></span>
+                        <a href="/logout">Cerrar Sesión</a>
+                    </span>
+                    <span th:if="${usuario == null}">
+                        <a href="login">Iniciar Sesión</a>
+                    </span>
+                </div>           
+            </section>
+        </nav>
+        <div class="contenedor">
+            <section class="contenido-header">
+                <section class="textos-heater">
+                    <h1>VETERINARIA PET CARE</h1>
+                    <p>Cuidando de tus mascotas con amor y dedicación.</p>
+                    <a href="servicio">Reserva Tu Cita Aquí</a>
+                </section>
+                <img src="../img/imagennav.png" alt="">
+            </section>
+        </div>
+    </header>
+    <section class="productosmasvendidos">
+        <div class="contenedor1">
+            <h2 class="titulo">Los productos más vendidos</h2>
+            <div class="contenedor-articulo">
+                <div class="articulo">
+                    <img src="../img/Producto1.jpeg" alt="">
+                    <div class="descripcion">
+                        <h3>Croqueta para perros</h3>
+                        <h4>Marca:Purina</h4>
+                    </div>
+                </div>
+                <div class="articulo">
+                    <img src="../img/Producto3.jpg" alt="">
+                    <div class="descripcion">
+                        <h3>Croqueta para perros</h3>
+                        <h4>Marca:Purina</h4>
+                    </div>
+                </div>
+                <div class="articulo">
+                    <img src="../img/Producto4.png" alt="">
+                    <div class="descripcion">
+                        <h3>Croqueta para perros</h3>
+                        <h4>Marca:Purina</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="servicios">
+        <div class="contenedor1">
+            <h2 class="titulo">Nuestros Servicios</h2>
+            <div class="contenedorservicios">
+                <div class="servicio">
+                    <img src="../img/Peluqueria.jpeg" alt="">
+                    <div class="informacion">
+                        <h5>Groomin (Baño y Corte)</h5>
+                        <h6>Se corta el pelaje con tijeras de punta roma, se recorta el pelo que cubra ojos y el exceso
+                            en el cuerpo y las almohadillas de las patas. El precio es general no varia por el tamaño de
+                            la mascota y este servicio se brinda a todo tipo de mascotas con pelaje.</h6>
+                        <div class="precio">
+                            <h7>Precio:</h7>
+                            <h8>S/.60.00 - S/.150.00</h8>
+                        </div>
+                    </div>
+                </div>
+                <div class="servicio">
+                    <img  src="../img/radiografia.jpg" alt="">
+                    <div class="informacion">
+                        <h5>Radiografia</h5>
+                        <h6>Utilizamos radiografías para diagnosticar problemas internos en tu mascota, 
+                            como fracturas y enfermedades de manera rápida y segura. ¡Cuidamos su salud desde adentro!</h6>
+                            <div class="precio">
+                                <h7>Precio:</h7>
+                                <h8>S/.100.00 - S/.200.00</h8>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '6744ac7939e838d569b398cf' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+      </script>
+    <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="../img/PetCare.png" alt="PetCare Logo">
+                </div>
+                <div class="footer-info">
+                    <h4>Contáctanos</h4>
+                    <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navegación</h4>
+                    <div class="nav-columns">
+                        <div class="nav-columnss">
+                            <a href="inicio">Inicio</a>
+                            <a href="blog">Blog</a>
+                            <a href="tienda">Carrito</a>
+                        </div>
+                        <div class="nav-column">
+                            <a href="servicio">Citas</a>
+                            <a href="tienda">Tienda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 PetCare. All rights reserved.</p>
+            </div>
+        </footer>
+    <script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+    <script>
+        function mostrarAlerta() {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text: 'Debes iniciar sesión para ver el perfil.',
+            confirmButtonText: 'OK'
+          });
+        }
+      </script>
+</body>
+
+</html>

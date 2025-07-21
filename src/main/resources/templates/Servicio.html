@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/servicios.css">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <title>Pet Care - Servicios</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/miyagi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <section class="contenedor nav">
+                <div class="logo">
+                    <img src="../img/PetCare.png" alt="">
+                </div>
+                <div class="enlaces-header">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                    <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                    <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+                </div>
+                <div class="botnesnav">
+                    <div class="carrito-container">
+                        <a href="/carrito" class="carrito-link">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                    </div>
+                    <span th:if="${usuario != null}">
+                        <span th:text="${usuario.nombre}"></span>
+                        <a href="/logout">Cerrar Sesión</a>
+                    </span>
+                    <span th:if="${usuario == null}">
+                        <a href="login">Iniciar Sesión</a>
+                    </span>
+                </div>          
+            </section>
+        </nav>
+    </header>
+    <main class="listaservicios">
+        <section class="informacion">
+            <div class="container">  
+                
+                <!-- Loader (hidden by default) -->
+                <div id="loader-container" style="display: none; text-align: center;">
+                    <l-miyagi
+                        size="35"
+                        stroke="3.5"
+                        speed="0.9"
+                        color="black">
+                    </l-miyagi>
+                </div>
+
+                <form action="/crear-cita" name="citas" method="post" onsubmit="showLoader()">
+                    <h3>Realiza tu reserva</h3>
+                
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$" required title="El nombre solo debe contener letras y espacios."><br>
+                
+                    <label for="apellido">Apellido:</label><br>
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$" required title="El apellido solo debe contener letras y espacios."><br>
+                
+                    <label for="telefono">Número de Teléfono:</label><br>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+51 999 999 999" pattern="^9\d{8}$" required title="Solo se aceptan números nacionales, el teléfono debe comenzar con 9."><br>
+                
+                    <label for="correo">Correo Electronico:</label><br>
+                    <input type="email" id="correo" name="correo" placeholder="petcare@gmail.com" pattern="^[a-zA-Z0-9._%+-ñÑ]+@(gmail\.com|hotmail\.com)$" required title="El correo debe pertenecer al dominio Gmail o Hotmail."><br>
+                
+                    <label for="fecha">Fecha:</label><br>
+                    <input type="date" id="fecha" name="fecha" value="" required><br>
+                
+                    <label for="hora">Hora:</label><br>
+                    <input type="time" id="hora" name="hora" value="" required><br>
+                
+                    <label for="servicio">Servicio:</label><br>
+                    <select id="servicio" class="seleccion" name="servicio" required>
+                        <option value="">Selecciona un servicio</option>
+                        <th:block th:each="servicio : ${servicios}">
+                            <option th:value="${servicio.ids}" th:text="${servicio.nombs}"></option>
+                        </th:block>
+                    </select>                    
+                    <br>
+                    <button class="boton" name="enviar" type="submit">Enviar</button>
+                </form>
+                <div class="image">
+                    <img src="../img/imagenregistro.jpg" alt="Imagen representando valores y conócenos">
+                </div>
+            </div>
+        </section>
+        <div class="contenedorprincipal">
+            <section class="titulo">
+                <h1>Los mejores servicios están aquí</h1>
+                <h2>Cuidado especializado, tecnología avanzada y un equipo comprometido con la salud de tu amigo peludo.
+                </h2>
+                <article class="boxservicio">
+                    <img src="../img/Peluqueria.jpeg" alt="">
+                    <div class="informacion">
+                        <h5>Groomin (Baño y Corte)</h5>
+                        <h6>Se corta el pelaje con tijeras de punta roma, se recorta el pelo que cubra ojos y el exceso
+                            en el cuerpo y las almohadillas de las patas. El precio es general no varia por el tamaño de
+                            la mascota y este servicio se brinda a todo tipo de mascotas con pelaje.</h6>
+                        <div class="precio">
+                            <h7>Precio:</h7>
+                            <h8>S/.60.00 - S/.150.00</h8>
+                        </div>
+                    </div>
+                </article>
+                <article class="boxservicio">
+                    <img src="../img/radiografia.jpg" alt="">
+                    <div class="informacion">
+                        <h5>Radiografia</h5>
+                        <h6>Utilizamos radiografías para diagnosticar problemas internos en tu mascota,
+                            como fracturas yenfermedades,de manera rápida y segura. ¡Cuidamos su salud desde adentro!
+                        </h6>
+                        <div class="precio">
+                            <h7>Precio:</h7>
+                            <h8>S/.100.00 - S/.200.00</h8>
+                        </div>
+                    </div>
+                </article>
+                <article class="boxservicio">
+                    <img src="../img/servicios3.jpg" alt="">
+                    <div class="informacion">
+                        <h5>Limpieza Dental</h5>
+                        <h6>Mantenemos los dientes de tu mascota sanos y limpios con nuestras limpiezas dentales.
+                            Prevenimos el
+                            mal aliento, la placa y las enfermedades dentales para asegurar su bienestar. ¡Una sonrisa
+                            saludable
+                            para tu mejor amigo!
+                        </h6>
+                        <div class="precio">
+                            <h7>Precio:</h7>
+                            <h8>S/.250.00 - S/.500.00</h8>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '6744ac7939e838d569b398cf' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+      </script>
+
+    <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="../img/PetCare.png" alt="PetCare Logo">
+                </div>
+                <div class="footer-info">
+                    <h4>Contáctanos</h4>
+                    <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Síguenos</h4>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navegación</h4>
+                    <div class="nav-columns">
+                        <div class="nav-columnss">
+                            <a href="inicio">Inicio</a>
+                            <a href="blog">Blog</a>
+                            <a href="tienda">Carrito</a>
+                        </div>
+                        <div class="nav-column">
+                            <a href="servicio">Citas</a>
+                            <a href="tienda">Tienda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 PetCare. All rights reserved.</p>
+            </div>
+        </footer>   
+        <script type="text/javascript">            
+            function showLoader() {
+                document.getElementById('loader-container').style.display = 'block';
+            }
+        </script>
+    
+    <script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+    <script>
+        function mostrarAlerta() {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text: 'Debes iniciar sesión para ver el perfil.',
+            confirmButtonText: 'OK'
+          });
+        }
+      </script>
+</body>
+
+</html>

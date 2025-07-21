@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/boton.css">
+    <link rel="stylesheet" href="../css/carropago.css">
+    <title>Carrito</title>
+    <link rel="icon" href="../img/icono 3.webp">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<header>
+    <nav>
+        <section class="contenedor nav">
+            <div class="logo">
+                <img src="../img/PetCare.png" alt="">
+            </div>
+            <div class="enlaces-header">
+                <a href="inicio">Inicio</a>
+                <a href="blog">Blog</a>
+                <a href="servicio">Citas</a>
+                <a href="tienda">Tienda</a>
+                <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+            </div>
+            <div class="botnesnav">
+                <div class="carrito-container">
+                    <a href="/carrito" class="carrito-link">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+                </div>
+                <span th:if="${usuario != null}">
+                    <span th:text="${usuario.nombre}"></span>
+                    <a href="/logout">Cerrar Sesión</a>
+                </span>
+                <span th:if="${usuario == null}">
+                    <a href="login">Iniciar Sesión</a>
+                </span>
+            </div>         
+        </section>
+    </nav>
+</header>
+<body>
+    <main class="contenido">      
+        <h1>Carrito de Compras</h1>
+        <div class="contenido-principal">
+            <div class="tabla-carrito">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio Unitario</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${items}">
+                            <td th:text="${item.producto.nom_prod}"></td>
+                            <td th:text="${item.producto.precio}"></td>
+                            <td>
+                                <form th:action="@{/carrito/actualizar}" method="post">
+                                    <input type="hidden" name="id_producto" th:value="${item.producto.id_producto}">
+                                    <input type="number" name="cantidad" th:value="${item.cantidad}" min="1">
+                                    <button type="submit">Actualizar</button>
+                                </form>
+                            </td>
+                            <td th:text="${#numbers.formatDecimal(item.subtotal, 1, 2)}"></td>
+                            <td>
+                                <form th:action="@{/carrito/eliminar}" method="post">
+                                    <input type="hidden" name="id_producto" th:value="${item.producto.id_producto}">
+                                    <button type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Total: S/. <span id="totalAmount"  th:text="${total}"></span></h2>
+                <form th:action="@{/carrito/vaciar}" method="post">
+                    <button type="submit">Vaciar Carrito</button>
+                </form>
+                <a href="/tienda">Seguir Comprando</a>
+            </div>
+
+            <div class="metodo-pago">
+                <h2>Método de Pago</h2>
+                <script src="https://www.paypal.com/sdk/js?client-id=AQd5Igctq5Mnuyjyq_42BIxqUdVU6F8Q-InQNlQq2yxtdz65YXCWpxYxnuS4Nv0ixttVnFY9RCB4HlFv"></script>
+                <div id="paypal-button-container"></div>
+                <script>
+                    paypal.Buttons({
+                        createOrder: function(data, actions) {
+                            var total = document.getElementById('totalAmount').textContent; 
+                            //El valor tiene que ser diferente a 0 sino no carga el metodo de pago
+                            if (parseFloat(total) <= 0) {
+                                alert("No tiene ningún producto en su carrito.");
+                                return; 
+                            }
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: total 
+                                    }
+                                }]
+                            });
+                        },
+                        onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        Swal.fire({
+                        icon: 'success',
+                        title: 'Pago Completado',
+                        text: 'Gracias por tu compra',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    // Redirigir después de 2 segundos
+                    setTimeout(function() {
+                        window.location.href = '/inicio'; 
+                    }, 2000);
+                    });
+                },
+                onCancel: function(data) {
+                    Swal.fire({
+                    icon: 'warning',
+                    title: 'Pago Cancelado',
+                    text: 'El pago fue cancelado',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                }
+                    }).render('#paypal-button-container');
+                </script>
+            </div>
+        </div>
+    </main>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="../img/PetCare.png" alt="PetCare Logo">
+        </div>
+        <div class="footer-info">
+            <h4>Contáctanos</h4>
+            <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+        </div>
+        <div class="footer-social">
+            <h4>Síguenos</h4>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="footer-nav">
+            <h4>Navegación</h4>
+            <div class="nav-columns">
+                <div class="nav-columnss">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="tienda">Carrito</a>
+                </div>
+                <div class="nav-column">
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2024 PetCare. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function mostrarAlerta() {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Atención',
+        text: 'Debes iniciar sesión para ver el perfil.',
+        confirmButtonText: 'OK'
+      });
+    }
+  </script>
+</html>

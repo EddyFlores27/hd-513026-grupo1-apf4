@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/detallesprod.css">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/boton.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Detalles del Producto</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <section class="contenedor nav">
+                <div class="logo">
+                    <img src="../img/PetCare.png" alt="">
+                </div>
+                <div class="enlaces-header">
+                    <a href="inicio">Inicio</a>
+                    <a href="blog">Blog</a>
+                    <a href="servicio">Citas</a>
+                    <a href="tienda">Tienda</a>
+                    <a href="#" th:if="${usuario == null}" onclick="mostrarAlerta()">Perfil de Usuario</a>
+                    <a href="perfil" th:if="${usuario != null}">Perfil de Usuario</a>
+                </div>
+                <div class="botnesnav">
+                    <div class="carrito-container">
+                        <a href="/carrito" class="carrito-link">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                    </div>
+                    <span th:if="${usuario != null}">
+                        <span th:text="${usuario.nombre}"></span>
+                        <a href="/logout">Cerrar Sesión</a>
+                    </span>
+                    <span th:if="${usuario == null}">
+                        <a href="login">Iniciar Sesión</a>
+                    </span>
+                </div>         
+            </section>
+        </nav>
+    </header>
+    <main class="contenido">
+    <div class="producto-detalle">
+        <!-- Imagen del producto -->
+        <img th:src="@{'/img/' + ${producto.id_producto} + '.jpg'}" alt="Imagen del producto">
+        
+        <!-- Detalles del producto -->
+        <h1 th:text="${producto.nom_prod}"></h1>
+        <h2 th:text="'Marca: ' + ${producto.marca}"></h2>
+        <h3 th:text="'Precio: S/. ' + ${producto.precio}"></h3>
+        <h4 th:text="'Disponibilidad: ' + ${producto.disponibilidad}"></h4>
+        <h5 th:text="'Categoría: ' + ${producto.categoria}"></h5>
+        
+        <!-- Formulario para agregar al carrito -->
+        <form th:action="@{/carrito/agregar}" method="post">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" id="cantidad" min="1" value="1" required>
+            <input type="hidden" name="id_producto" th:value="${producto.id_producto}">
+            <button type="submit">Agregar al Carrito</button>
+        </form>
+        
+        <!-- Enlace para regresar a la tienda -->
+        <a href="/tienda" class="btn-regresar">Regresar</a>
+    </div>
+</main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="../img/PetCare.png" alt="PetCare Logo">
+            </div>
+            <div class="footer-info">
+                <h4>Contáctanos</h4>
+                <p>Teléfono: +51 955 327 671 <br>Email: petcare@gmail.com</p>
+            </div>
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="footer-nav">
+                <h4>Navegación</h4>
+                <div class="nav-columns">
+                    <div class="nav-columnss">
+                        <a href="inicio">Inicio</a>
+                        <a href="blog">Blog</a>
+                        <a href="tienda">Carrito</a>
+                    </div>
+                    <div class="nav-column">
+                        <a href="servicio">Citas</a>
+                        <a href="tienda">Tienda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 PetCare. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/b747adff4c.js" crossorigin="anonymous"></script>
+    <script>
+        function mostrarAlerta() {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Atención',
+            text: 'Debes iniciar sesión para ver el perfil.',
+            confirmButtonText: 'OK'
+          });
+        }
+      </script>
+</body>
+</html>

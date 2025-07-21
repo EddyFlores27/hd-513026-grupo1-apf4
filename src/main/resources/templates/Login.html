@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../css/navegacion.css">
+    <link rel="icon" href="../Img/icono 3.webp">
+    <title>Pet Care - Inicio de sesión</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Mensaje de contraseña equivocada -->
+        <div th:if="${param.contra}" class="alert alert-success" role="alert">
+            ¡Contraseña equivocada! Intenta otra vez
+        </div>
+        <div th:if="${param.error}" class="alert alert-success" role="alert">
+            El correo ingresado no existe
+        </div>
+        <!-- Formulario de login -->
+        <form action="/login" method="POST">
+            <div class="imagen">
+                <img src="../Img/PetCare.jpg" alt="Logo PetCare">
+            </div>
+    
+            <label for="email">Correo Electrónico</label><br>
+            <input type="email" id="email" name="email" accesskey="a" placeholder="Correo aquí" required>
+    
+            <label for="password">Contraseña</label><br>
+            <input type="password" id="password" name="password" accesskey="b" placeholder="Contraseña aquí" required>
+
+            <div class="register-link">
+                <p>¿No tienes cuenta? <a href="registro">Regístrate</a></p>
+                
+            </div>
+    
+            <button type="submit">Ingresar</button>
+    
+            <div class="register-link">              
+                <p><a href="restablecer">Olvidaste tu contraseña?</a></p>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

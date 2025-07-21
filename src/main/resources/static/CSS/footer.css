@@ -1,0 +1,203 @@
+footer {
+    background-color: #D3D3D3;
+    color: #585858;
+    padding: 30px 0;
+    margin-top: auto; 
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+   /* max-width: 1200px;  */
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-logo img {
+    max-width: 220px;
+    margin-bottom: 20px;
+}
+
+.footer-info,
+.footer-social,
+.footer-nav {
+    margin-bottom: 20px;
+    flex-basis: 25%;
+}
+
+.footer-info h4,
+.footer-social h4,
+.footer-nav h4 {
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 22px;
+    color: black;
+    /* Centra los títulos */
+}
+
+.footer-info p,
+.footer-nav .nav-column a,
+.footer-social a {
+    text-align: center;
+    font-size: 18px;
+}
+
+.footer-social a :hover{
+    color:#ff7514;
+}
+
+.footer-nav .nav-columnss a {
+    text-align: left;
+    font-size: 18px;
+}
+
+.footer-social a {
+    color: #585858;
+    margin: 0 15px;
+    /* Espaciado entre los íconos de redes sociales */
+    font-size: 24px;
+}
+
+.footer-nav .nav-columns {
+    display: flex;
+    justify-content: center;
+    /* Centra ambas columnas de navegación */
+    gap: 20px;
+    /* Espacio entre las dos columnas */
+}
+
+.footer-nav .nav-column {
+    display: flex;
+    flex-direction: column;
+    /* Hace que los enlaces se apilen en cada columna */
+}
+
+.footer-nav a {
+    display: block;
+    margin: 5px 0;
+    /* Añade espacio entre los enlaces de la navegación */
+    color: #585858;
+    text-align: center;
+    /* Centra los enlaces */
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 18px;
+    color: #585858;
+}
+
+/* Redes sociales */
+.footer-social a {
+    color: #585858;
+    margin: 0 15px;
+    /* Espaciado entre los íconos de redes sociales */
+    font-size: 36px;
+    text-decoration: none;
+}
+
+/* Enlaces de navegación */
+.footer-nav a {
+    display: block;
+    margin: 5px 0;
+    /* Añade espacio entre los enlaces de la navegación */
+    color: #585858;
+    text-align: center;
+    /* Centra los enlaces */
+    text-decoration: none;
+}
+
+/* Quitar efecto hover en navegación */
+.footer-nav a:hover,
+.footer-nav a:focus,
+.footer-nav a:active {
+    color: orange;
+    /* Mantén el color blanco sin efecto hover o active */
+    background-color: transparent;
+    /* Asegúrate de que no cambie el fondo */
+}
+
+/* Quitar efecto hover, focus, y active en redes sociales */
+.footer-social a:hover,
+.footer-social a:focus,
+.footer-social a:active {
+    color: white;
+    /* Mantén el color blanco sin efecto hover */
+    background-color: transparent;
+    /* Asegura que no haya cambio de fondo */
+    box-shadow: none;
+    /* Elimina cualquier sombra que aparezca al interactuar */
+    transform: none;
+    /* Evita cualquier transformación de escala o rotación */
+    transition: none;
+    /* Elimina cualquier animación de transición */
+}
+
+/* Espaciado*/
+.footer-info h4 {
+    margin-bottom: 35px;
+    /* Ajusta el espacio entre el título y el contenido */
+}
+
+.footer-info p {
+    margin-top: 10px;
+    /* Ajusta el espacio entre cada párrafo y el título */
+}
+
+.footer-social h4 {
+    margin-bottom: 35px;
+    /* Ajusta el espacio entre el título "Síguenos" y los íconos */
+}
+
+.footer-social a {
+    margin-top: 10px;
+    /* Espacio adicional entre cada icono */
+}
+
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+        width: 100%;
+        height: fit-content;
+    }
+
+    .footer-info,
+    .footer-social,
+    .footer-nav {
+        width: 100%; 
+        margin-bottom: 20px; 
+    }
+
+    .footer-nav .nav-columns {
+        flex-direction: column; 
+        width: 100%; 
+        gap: 10px; 
+        align-items: center; 
+
+    }
+
+    .footer-nav .nav-column {
+        width: 100%; 
+        text-align: center; 
+    }
+
+    .footer-nav a {
+        text-align: center; 
+        margin: 5px 0; 
+    }
+
+}
+
